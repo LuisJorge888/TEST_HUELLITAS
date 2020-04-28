@@ -1,8 +1,10 @@
-package com.example.huellitas;
+package com.example.huellitas.vistas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.huellitas.R;
 
 public class MainActivity extends AppCompatActivity {
 
