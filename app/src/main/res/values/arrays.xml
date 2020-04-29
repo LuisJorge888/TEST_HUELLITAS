@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tipoMascota">
+        <item>Ingrese tipo de mascota...</item>
+        <item>Gato</item>
+        <item>Perro</item>
+        <item>Conejo</item>
+        <item>Otro</item>
+    </string-array>
+
+    <string-array name="generoMascota">
+        <item>Ingrese género de mascota...</item>
+        <item>Macho</item>
+        <item>Hembra</item>
+    </string-array>
+
+</resources>

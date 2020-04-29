@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">HUELLITAS</string>
+    <string name="nombreMascota">Ingrese nombre de mascota</string>
+    <string name="edadMascota">Ingrese edad de la mascota</string>
+    <string name="generoMascota">Ingrese género de mascota</string>
+    <string name="tipoMascota">Ingrese tipo de mascota</string>
+    <string name="crearMascota">Agregar Mascota</string>
+    <string name="descripcionMascota">Ingrese descripción de la mascota</string>
 </resources>
