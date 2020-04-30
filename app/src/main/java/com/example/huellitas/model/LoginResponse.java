@@ -8,6 +8,11 @@ public class LoginResponse {
     private String id;
     @SerializedName("email")
     private String email;
+    @SerializedName("code")
+    private String code;
+    @SerializedName("mensaje")
+    private String mensaje;
+
 
     public String getId() {
         return id;
@@ -15,5 +20,13 @@ public class LoginResponse {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getMensaje() {
+        return mensaje;
     }
 }

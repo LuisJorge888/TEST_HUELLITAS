@@ -8,7 +8,10 @@
     <string name="descripcionMascota">Ingrese descripción de la mascota</string>
 
 
-    <string name="bienvenido">Bienvenido inicie session</string>
-    <string name="login">Iniciar session</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="login">Iniciar</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="email">Email@gmail.con</string>
+    <string name="clave">Contraseña</string>
 
 </resources>

@@ -28,10 +28,9 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         Esta_login();
-
-        Button   login      = findViewById(R.id.btn_login);
+        Button  login  = findViewById(R.id.btn_login);
+        Button  registrar  = findViewById(R.id.btn_login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +39,7 @@ public class Login extends AppCompatActivity {
                 CheckLogin(txt_email.getText().toString(),txt_clave.getText().toString());
             }
         });
+
     }
 
     public void CheckLogin(String mail, String clave){
@@ -49,13 +49,24 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                 if(response.isSuccessful()){
-                    String mensaje = "Login: "+response.body().getId()+" "+response.body().getEmail();
-                    String id = response.body().getId();
-                    String email = response.body().getEmail();
-                    Toast.makeText(Login.this, mensaje, Toast.LENGTH_SHORT).show();
-                    Save_user(id,email);
-                    Intent intent = new Intent(getApplicationContext(), test.class);
-                    startActivity(intent);
+
+                    if(response.body().getCode().equals("1")){  // email incorrecta
+                        Toast.makeText(Login.this, "Email incorrecto", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(response.body().getCode().equals("2")){  // clave incorrecta
+                        Toast.makeText(Login.this, "Clave incorrecta", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(response.body().getCode().equals("3")){  // todo OK
+                        String mensaje = "Login: "+response.body().getId()+" "+response.body().getEmail();
+                        String id = response.body().getId();
+                        String email = response.body().getEmail();
+                        Toast.makeText(Login.this, mensaje, Toast.LENGTH_SHORT).show();
+                        Save_user(id,email);
+                        Intent intent = new Intent(getApplicationContext(), test.class);
+                        startActivity(intent);
+                    }
                 } else{
                     Toast.makeText(Login.this, "Error: El serve no respondio", Toast.LENGTH_SHORT).show();
                 }
