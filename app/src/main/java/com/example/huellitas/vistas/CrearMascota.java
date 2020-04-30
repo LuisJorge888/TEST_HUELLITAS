@@ -2,22 +2,29 @@ package com.example.huellitas.vistas;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.huellitas.Configuracion;
 import com.example.huellitas.R;
 import com.example.huellitas.model.mascota;
 import com.example.huellitas.rest.API;
 import com.example.huellitas.rest.HuellitasApiService;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class CrearMascota extends AppCompatActivity {
@@ -26,7 +33,7 @@ public class CrearMascota extends AppCompatActivity {
     Spinner spnGenero, spnTipo;
     Button btnAgregarMascota;
     HuellitasApiService huellitasApiService;
-
+    private static Retrofit retrofit = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +44,7 @@ public class CrearMascota extends AppCompatActivity {
         spnTipo = (Spinner) findViewById(R.id.tipomascota);
         edtDescripcion = (EditText) findViewById(R.id.descripcion);
         btnAgregarMascota = (Button) findViewById(R.id.btnCrearMascota);
+        //connectAndGetApiData();
 
         btnAgregarMascota.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,23 +66,34 @@ public class CrearMascota extends AppCompatActivity {
 
     }
 
+    public void connectAndGetApiData(){
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(Configuracion.API_BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+    }
+
     private void altaMascota(String nombre, int edad, boolean genero, String tipo, String descripcion){
         huellitasApiService = API.getAPI().create(HuellitasApiService.class);
-        Call<mascota> call = huellitasApiService.crearMascota(nombre,edad, genero, tipo, descripcion);
+        //huellitasApiService = retrofit.create(HuellitasApiService.class);
+        Call<mascota> call = huellitasApiService.crearMascota(nombre,edad,genero,tipo,descripcion);
+
         call.enqueue(new Callback<mascota>() {
             @Override
             public void onResponse(@NonNull Call<mascota> call, @NonNull Response<mascota> response) {
-            if(response.isSuccessful()){
-                Toast.makeText(CrearMascota.this, "la mascota se dio de alta", Toast.LENGTH_SHORT).show();
-            } else{
-                Toast.makeText(CrearMascota.this, "la mascota no se dio de alta", Toast.LENGTH_SHORT).show();
-            }
+                if(response.isSuccessful()){
+                    Toast.makeText(CrearMascota.this, "la mascota se dio de alta", Toast.LENGTH_SHORT).show();
+                } else{
+                    Toast.makeText(CrearMascota.this, "la mascota no se dio de alta", Toast.LENGTH_SHORT).show();
+                }
 
             }
 
             @Override
             public void onFailure(@NonNull Call<mascota> call, @NonNull Throwable t) {
-            Toast.makeText(CrearMascota.this, t.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(CrearMascota.this, t.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
             }
         });
 

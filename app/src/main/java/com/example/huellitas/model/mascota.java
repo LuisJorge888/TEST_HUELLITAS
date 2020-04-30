@@ -17,6 +17,7 @@ public class mascota {
     //@SerializedName("foto") private Blob foto;
     //@SerializedName("duenio") private usuario duenio;
     //private int dueniomascota;
+    //@Expose @SerializedName("imagen") private String imagen;
 
 
     public mascota(String nombre, int edad, boolean genero, String tipo, String descripcion) {
@@ -66,5 +67,7 @@ public class mascota {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    //public String getImagen() { return this.imagen; }
 
 }
