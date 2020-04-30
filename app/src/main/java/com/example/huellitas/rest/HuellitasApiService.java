@@ -1,5 +1,6 @@
 package com.example.huellitas.rest;
 
+import com.example.huellitas.model.LoginResponse;
 import com.example.huellitas.model.mascota;
 import com.example.huellitas.model.usuario;
 
@@ -24,5 +25,13 @@ public interface HuellitasApiService {
             //@Field("fotomascota") Blob fotomascota,
             //@Field("dueniomascota") usuario dueniomascota
      );
+
+    @POST("login")
+    @FormUrlEncoded
+    Call<LoginResponse> login(
+            @Field("email") String email,
+            @Field("clave") String clave
+    );
+
 
 }

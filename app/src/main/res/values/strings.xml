@@ -6,4 +6,9 @@
     <string name="tipoMascota">Ingrese tipo de mascota</string>
     <string name="crearMascota">Agregar Mascota</string>
     <string name="descripcionMascota">Ingrese descripción de la mascota</string>
+
+
+    <string name="bienvenido">Bienvenido inicie session</string>
+    <string name="login">Iniciar session</string>
+
 </resources>
