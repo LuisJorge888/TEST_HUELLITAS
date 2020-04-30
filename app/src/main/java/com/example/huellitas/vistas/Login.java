@@ -64,7 +64,7 @@ public class Login extends AppCompatActivity {
                         String email = response.body().getEmail();
                         Toast.makeText(Login.this, mensaje, Toast.LENGTH_SHORT).show();
                         Save_user(id,email);
-                        Intent intent = new Intent(getApplicationContext(), test.class);
+                        Intent intent = new Intent(getApplicationContext(), MainApp.class);
                         startActivity(intent);
                     }
                 } else{
@@ -95,7 +95,7 @@ public class Login extends AppCompatActivity {
         if(settings.contains("login")){
             String value = settings.getString("login","");
             if(value.equals("true")){
-                Intent intent = new Intent(getApplicationContext(), test.class);
+                Intent intent = new Intent(getApplicationContext(), MainApp.class);
                 startActivity(intent);
             }else{
                 Toast.makeText(Login.this, "Login es:"+value, Toast.LENGTH_SHORT).show();
