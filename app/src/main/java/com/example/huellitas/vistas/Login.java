@@ -30,7 +30,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         Esta_login();
         Button  login  = findViewById(R.id.btn_login);
-        Button  registrar  = findViewById(R.id.btn_login);
+        Button  registrar  = findViewById(R.id.btn_registrar);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +40,20 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        registrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AltaUsuario.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Esta_login();
     }
 
     public void CheckLogin(String mail, String clave){
@@ -101,7 +115,7 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(Login.this, "Login es:"+value, Toast.LENGTH_SHORT).show();
             }
         }else{
-            Toast.makeText(Login.this, "Nunca inicio sesion", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(Login.this, "Nunca inicio sesion", Toast.LENGTH_SHORT).show();
         }
     }
 }

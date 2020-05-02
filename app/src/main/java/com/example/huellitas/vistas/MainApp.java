@@ -1,18 +1,24 @@
 package com.example.huellitas.vistas;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.example.huellitas.R;
+import com.example.huellitas.vistas.ui.AltaMascota.AltaMascota;
+import com.example.huellitas.vistas.ui.MisMascotas.MisMascotas;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -24,6 +30,7 @@ import androidx.appcompat.widget.Toolbar;
 public class MainApp extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private static final String SHARED_PREFS = "login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,37 +51,14 @@ public class MainApp extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_AltaMascota, R.id.nav_VerMascota, R.id.nav_CerrarSession)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        FragmentManager f = getSupportFragmentManager();
-                        switch (item.getItemId()){
-                            case R.id.nav_home:
 
-                                break;
-                            case R.id.nav_gallery:
-                                Intent itent = new Intent(getApplication(),AltaUsuario.class);
-                                startActivity(itent);
-                                break;
-                            case R.id.nav_slideshow:
-                                //f.beginTransaction().replace(R.id.panel, new Import()).commit();
-                                break;
-                            default:
-                                throw new IllegalStateException("Operacion no implementada");
-                        }
-                        drawer.closeDrawers();
-                        return true;
-                    }
-                }
-        );
     }
 
     @Override
@@ -90,4 +74,44 @@ public class MainApp extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Esta_login();
+    }
+
+    public void Esta_login() {
+        SharedPreferences settings = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        if (!settings.contains("login")) {
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            startActivity(intent);
+        }
+    }
+    /*
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.nav_home:
+
+            case R.id.nav_AltaMascota:
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransacion = fragmentManager.beginTransaction();
+                fragmentTransacion.replace(R.id.panel, new AltaMascota());
+                return true;
+            case R.id.nav_VerMascota:
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransacion = fragmentManager.beginTransaction();
+                fragmentTransacion.replace(R.id.panel, new MisMascotas());
+                return true;
+            case R.id.nav_CerrarSession:
+                Toast.makeText(MainApp.this, "Cerro Sesion", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    */
+
 }
