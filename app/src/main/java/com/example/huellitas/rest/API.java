@@ -18,7 +18,8 @@ public class API {
         return builder(HuellitasApiService.class);
     }
     */
-      private static final String BASE_URL = "http://10.0.2.2/slim3/public/";
+      private static final String BASE_URL = "http://10.0.2.2/slim/public/";
+
       private static Retrofit retrofit;
 
       public static Retrofit getAPI(){

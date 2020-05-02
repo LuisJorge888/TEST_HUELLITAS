@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +35,12 @@ public class CrearMascota extends AppCompatActivity {
     Button btnAgregarMascota;
     HuellitasApiService huellitasApiService;
     private static Retrofit retrofit = null;
+    private static final String SHARED_PREFS = "login";
+    SharedPreferences settings = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+    String idUsuarioxd = settings.getString("id", "");
+    int id = Integer.parseInt(idUsuarioxd);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +51,8 @@ public class CrearMascota extends AppCompatActivity {
         spnTipo = (Spinner) findViewById(R.id.tipomascota);
         edtDescripcion = (EditText) findViewById(R.id.descripcion);
         btnAgregarMascota = (Button) findViewById(R.id.btnCrearMascota);
+
+
         //connectAndGetApiData();
 
         btnAgregarMascota.setOnClickListener(new View.OnClickListener() {
@@ -55,11 +64,13 @@ public class CrearMascota extends AppCompatActivity {
                 String tipo = spnTipo.getSelectedItem().toString();
                 String descripcion = edtDescripcion.getText().toString();
 
+
+
                 String macho = "Macho";
                 if(genero.equals(macho)){
-                    altaMascota(nombre,edad,true,tipo,descripcion);
+                    altaMascota(nombre,edad,true,tipo,descripcion,id);
                 } else{
-                    altaMascota(nombre,edad,false,tipo,descripcion);
+                    altaMascota(nombre,edad,false,tipo,descripcion,id);
                 }
             }
         });
@@ -75,10 +86,10 @@ public class CrearMascota extends AppCompatActivity {
         }
     }
 
-    private void altaMascota(String nombre, int edad, boolean genero, String tipo, String descripcion){
+    private void altaMascota(String nombre, int edad, boolean genero, String tipo, String descripcion, int id){
         huellitasApiService = API.getAPI().create(HuellitasApiService.class);
         //huellitasApiService = retrofit.create(HuellitasApiService.class);
-        Call<mascota> call = huellitasApiService.crearMascota(nombre,edad,genero,tipo,descripcion);
+        Call<mascota> call = huellitasApiService.crearMascota(nombre,edad,genero,tipo,descripcion, id);
 
         call.enqueue(new Callback<mascota>() {
             @Override

@@ -12,7 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".vistas.ListarMascotas"></activity>
+        <activity android:name=".vistas.ui.AltaMascota"></activity>
+        <activity android:name=".vistas.ListarMascotas" />
+        <activity
+            android:name=".vistas.MainApp"
+            android:label="@string/title_activity_main_app"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".vistas.AltaUsuario" />
+        <activity android:name=".vistas.test" />
+        <activity android:name=".vistas.Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!--
         <activity android:name=".vistas.CrearMascota"></activity>
         !
