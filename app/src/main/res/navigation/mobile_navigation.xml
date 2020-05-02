@@ -14,6 +14,15 @@
         <action
             android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
             app:destination="@id/nav_home_second" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_AltaMascota"
+            app:destination="@id/nav_AltaMascota" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_VerMascota"
+            app:destination="@id/nav_VerMascota" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_CerrarSession"
+            app:destination="@id/nav_CerrarSession" />
     </fragment>
     <fragment
         android:id="@+id/nav_home_second"
@@ -30,14 +39,32 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.huellitas.vistas.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_AltaMascota"
+        android:name="com.example.huellitas.vistas.ui.AltaMascota.AltaMascota"
+        android:label="@string/menu_AltaMascota"
+        tools:layout="@layout/alta_mascota_fragment" >
+        <action
+            android:id="@+id/action_nav_AltaMascota_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.huellitas.vistas.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_VerMascota"
+        android:name="com.example.huellitas.vistas.ui.MisMascotas.MisMascotas"
+        android:label="@string/menu_VerMascota"
+        tools:layout="@layout/mis_mascotas_fragment" >
+        <action
+            android:id="@+id/action_nav_VerMascota_to_nav_home2"
+            app:destination="@id/nav_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_CerrarSession"
+        android:name="com.example.huellitas.vistas.ui.CerraSession.CerrarSession"
+        android:label="@string/menu_CerrarSession"
+        tools:layout="@layout/cerrar_session_fragment" >
+        <action
+            android:id="@+id/action_nav_CerrarSession_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 </navigation>

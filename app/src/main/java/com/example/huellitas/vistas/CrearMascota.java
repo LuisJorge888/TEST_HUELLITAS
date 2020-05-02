@@ -1,4 +1,4 @@
-package com.example.huellitas.vistas;
+/*package com.example.huellitas.vistas;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -114,5 +114,5 @@ public class CrearMascota extends AppCompatActivity {
 
 
 }
-
+ */
 

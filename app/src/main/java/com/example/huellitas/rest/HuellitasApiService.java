@@ -17,13 +17,13 @@ public interface HuellitasApiService {
     Call<mascota> crearMascota(
             @Field("nombre") String nombre,
             @Field("edad") int edad,
-            @Field("genero") boolean genero,
-            @Field("tipo") String tipo,
-            //@Field("raza") String raza,
+            @Field("genero") String genero,
+            @Field("tipo") int tipo,
+            @Field("raza") String razaMascota,
             @Field("descripcion") String descripcion,
             //@Field("fotomascota") Blob fotomascota,
             //@Field("dueniomascota") usuario dueniomascota
-            @Field("id") int id
+            @Field("duenio") int id
      );
 
     @POST("login")

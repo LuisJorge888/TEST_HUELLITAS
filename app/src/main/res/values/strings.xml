@@ -52,6 +52,11 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
+    <string name="menu_AltaMascota">Nueva mascota</string>
+    <string name="menu_VerMascota">Mis mascotas</string>
+    <string name="menu_CerrarSession">Cerrar Session</string>
+
     <string name="home_second">Home Second</string>
+    <string name="alta_mascota">Alta Mascota</string>
 
 </resources>
