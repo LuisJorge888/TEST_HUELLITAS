@@ -8,15 +8,9 @@
     android:minHeight="72dp"
     android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/mascotas_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingRight="16dp" />
-
     <TextView
         android:id="@+id/nombreMascota"
-        android:layout_width="26dp"
+        android:layout_width="127dp"
         android:layout_height="wrap_content"
         android:paddingRight="16dp"
         android:textColor="@color/colorBlack"
@@ -24,8 +18,8 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/edadMascota"
-        android:layout_width="40dp"
+        android:id="@+id/idMascota"
+        android:layout_width="84dp"
         android:layout_height="wrap_content"
         android:paddingRight="16dp"
         android:textColor="@color/colorGreyLight" />

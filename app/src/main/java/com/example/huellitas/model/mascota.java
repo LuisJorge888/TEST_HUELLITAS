@@ -6,8 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.sql.Blob;
 
 public class mascota {
-    //private int id;
-
+    @Expose @SerializedName("id") private int id;
     @Expose @SerializedName("nombre") private String nombre;
     @Expose @SerializedName("edad") private int edad;
     @Expose @SerializedName("genero") private boolean genero;
@@ -20,12 +19,35 @@ public class mascota {
     //@Expose @SerializedName("imagen") private String imagen;
 
 
-    public mascota(String nombre, int edad, boolean genero, String tipo, String descripcion) {
+    public mascota(int id, String nombre, int edad, boolean genero, String tipo, String descripcion) {
+        this.id = id;
         this.nombre = nombre;
         this.edad = edad;
         this.genero = genero;
         this.tipo = tipo;
         this.descripcion = descripcion;
+    }
+
+    public mascota(String nombre, int edad, boolean genero, String tipo, String descripcion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.edad = edad;
+        this.genero = genero;
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+    }
+
+    public mascota (int id, String nombre){
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {

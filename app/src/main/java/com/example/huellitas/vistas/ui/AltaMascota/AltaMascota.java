@@ -40,7 +40,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class AltaMascota extends Fragment {
 
-    private AltaMascotaViewModel mViewModel;
     EditText edtNombre, edtEdad, edtDescripcion;
     Spinner spnGenero, spnTipo, spnRaza;
     Button btnAgregarMascota;

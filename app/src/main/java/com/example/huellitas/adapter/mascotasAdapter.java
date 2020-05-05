@@ -18,32 +18,33 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class mascotasAdapter extends RecyclerView.Adapter<mascotasAdapter.mascotasViewHolder> {
-    private List<mascota> mascotas;
+    private ArrayList<mascota> mascotas;
     private int rowLayout;
     private Context context;
 
-    public mascotasAdapter(List<mascota> mascotas, int rowLayout, Context context){
+    public mascotasAdapter(ArrayList<mascota> mascotas, int rowLayout, Context context){
         this.mascotas = mascotas;
         this.rowLayout = rowLayout;
         this.context = context;
     }
 
+
     public static class mascotasViewHolder extends RecyclerView.ViewHolder {
         LinearLayout mascotasLayout;
         TextView nombreMascota;
-        TextView edadMascota;
+        TextView idMascota;
         ImageView imagenMascota;
 
-        public mascotasViewHolder(@NonNull View v) {
+        public mascotasViewHolder(View v) {
             super(v);
             mascotasLayout =(LinearLayout) v.findViewById(R.id.mascotas_layout);
-            imagenMascota = (ImageView) v.findViewById(R.id.mascotas_image);
+            //imagenMascota = (ImageView) v.findViewById(R.id.mascotas_image);
             nombreMascota = (TextView) v.findViewById(R.id.nombreMascota);
-            edadMascota = (TextView) v.findViewById(R.id.edadMascota);
-
+            idMascota = (TextView) v.findViewById(R.id.idMascota);
         }
     }
 
@@ -62,7 +63,7 @@ public class mascotasAdapter extends RecyclerView.Adapter<mascotasAdapter.mascot
             .error(android.R.drawable.sym_def_app_icon)
             .into(holder.imagenMascota); */
     holder.nombreMascota.setText(mascotas.get(position).getNombre());
-    holder.edadMascota.setText(mascotas.get(position).getEdad());
+    holder.idMascota.setText(String.valueOf(mascotas.get(position).getId()));
     }
 
     @Override
