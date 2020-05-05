@@ -1,8 +1,11 @@
 package com.example.huellitas.vistas.ui.MisMascotas;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -23,6 +26,9 @@ import com.example.huellitas.model.mascota;
 import com.example.huellitas.model.mascotasResponse;
 import com.example.huellitas.rest.API;
 import com.example.huellitas.rest.HuellitasApiService;
+import com.example.huellitas.utils.OnItemClickListener;
+import com.example.huellitas.vistas.test;
+import com.example.huellitas.vistas.ui.InfoMascota.InfoMascota;
 
 import java.util.ArrayList;
 
@@ -72,7 +78,33 @@ public class MisMascotas extends Fragment {
     }
 
     private void llenarRecyclerViewMascotas(ArrayList<mascota> mascotas) {
+        mascotasAdapter adapter;
+        adapter =new mascotasAdapter(mascotas, R.layout.list_item_mascotas, getActivity());
         recyclerViewMascotas.setAdapter(new mascotasAdapter(mascotas, R.layout.list_item_mascotas, getActivity()));
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(mascota item) {
+                Toast.makeText(getContext(), item.getNombre(), Toast.LENGTH_LONG).show();
+                InfoMascota info= new InfoMascota();
+                /*
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(nextFrag)
+                        .addToBackStack(null)
+                        .commit();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.toolbar,nextFrag)
+                        .addToBackStack(null)
+                        .commit();
+                */
+
+                FragmentManager f = getActivity().getSupportFragmentManager();
+                FragmentTransaction ft = f.beginTransaction();
+                ft.replace(R.id.nav_VerMascota, info, "tag");
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+        recyclerViewMascotas.setAdapter(adapter);
     }
 
     private void obtenerMascotas() {
@@ -90,6 +122,7 @@ public class MisMascotas extends Fragment {
             if(response.isSuccessful()){
                 mascotasResponse mascotasResponse = response.body();
                 llenarRecyclerViewMascotas(mascotasResponse.getMascotas());
+
             } else{
                 Toast.makeText(activity, "Error en el formato de respuesta", Toast.LENGTH_SHORT).show();
             }

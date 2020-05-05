@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.huellitas.R;
 import com.example.huellitas.model.mascota;
+import com.example.huellitas.utils.OnItemClickListener;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -25,6 +27,7 @@ public class mascotasAdapter extends RecyclerView.Adapter<mascotasAdapter.mascot
     private ArrayList<mascota> mascotas;
     private int rowLayout;
     private Context context;
+    private OnItemClickListener onItemClickListener;
 
     public mascotasAdapter(ArrayList<mascota> mascotas, int rowLayout, Context context){
         this.mascotas = mascotas;
@@ -64,6 +67,21 @@ public class mascotasAdapter extends RecyclerView.Adapter<mascotasAdapter.mascot
             .into(holder.imagenMascota); */
     holder.nombreMascota.setText(mascotas.get(position).getNombre());
     holder.idMascota.setText(String.valueOf(mascotas.get(position).getId()));
+    View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onItemClick(mascotas.get(position));
+            }
+    };
+    holder.nombreMascota.setOnClickListener(listener);
+    }
+
+    public OnItemClickListener getOnItemClickListener() {
+        return onItemClickListener;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
